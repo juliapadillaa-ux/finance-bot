@@ -11,6 +11,12 @@ app.use(express.json({ limit: '20mb' }));
 
 app.get('/health', (_, res) => res.status(200).send('ok'));
 
+const PORT = process.env.PORT || 8080;
+
+app.listen(PORT, () => {
+  console.log("Server running on port " + PORT);
+});
+
 // Webhook con path secreto para evitar tráfico random
 app.post(config.telegram.secretPath, async (req, res) => {
   res.status(200).send('ok'); // responder rápido a Telegram
